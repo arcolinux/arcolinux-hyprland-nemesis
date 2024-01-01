@@ -4,7 +4,7 @@
 ## Export Environment Variables and Start Wayfire
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=hyprland
-export XDG_CURRENT_DESKTOP=hyrpland
+export XDG_CURRENT_DESKTOP=hyprland
 export XDG_CURRENT_SESSION=hyprland
 
 
@@ -87,4 +87,4 @@ XCURSOR_SIZE=24
 
 ## Start Hyprland
 sleep 0.5;
-hyprland
+Hyprland
