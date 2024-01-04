@@ -18,5 +18,18 @@ mv "${style_file}.temp" "${style_background_file}"
 
 echo "File names swapped successfully!"
 
-pkill waybar
-~/.config/hypr/scripts/statusbar &
+# kill first
+if [[ $(pidof waybar) ]]; then
+	killall -q waybar
+fi
+
+while pgrep -u $UID -x waybar > /dev/null;do sleep 1;done
+ 
+
+# start up again
+CONFIG="$HOME/.config/hypr/waybar/config.ini"
+STYLE="$HOME/.config/hypr/waybar/style.css"
+
+if [[ ! $(pidof waybar) ]]; then
+	waybar --bar main-bar --log-level error --config ${CONFIG} --style ${STYLE} &
+fi
