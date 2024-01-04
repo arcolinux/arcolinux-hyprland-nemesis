@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -r ~/.config/hypr/waybar/*
-cp -r ~/.config/hypr/waybar-alt-9/* ~/.config/hypr/waybar/
+cp -r ~/.config/hypr/waybar-alt-10/* ~/.config/hypr/waybar/
 
 # kill first
 if [[ $(pidof waybar) ]]; then
