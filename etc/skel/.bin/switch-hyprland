@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Function to install hyprland-git
+install_hyprland_git() {
+    if pacman -Qs hyprland > /dev/null; then
+        echo "hyprland is installed. Removing it to avoid conflicts..."
+        sudo pacman -Rns hyprland
+    fi
+
+    echo "Installing hyprland-git..."
+    if command -v yay > /dev/null; then
+        yay -S hyprland-git
+    elif command -v paru > /dev/null; then
+        paru -S hyprland-git
+    else
+        echo "No AUR helper found. Please install 'hyprland-git' manually."
+        exit 1
+    fi
+}
+
+# Function to install hyprland
+install_hyprland() {
+    if pacman -Qs hyprland-git > /dev/null; then
+        echo "hyprland-git is installed. Removing it to avoid conflicts..."
+        sudo pacman -Rns hyprland-git
+    fi
+
+    echo "Installing hyprland..."
+    sudo pacman -S hyprland
+}
+
+# Menu for user selection
+echo "Select which version of Hyprland to install:"
+echo "1) hyprland-git (AUR version)"
+echo "2) hyprland (Stable version from official repos)"
+read -rp "Enter choice (1 or 2): " choice
+
+case $choice in
+    1)
+        install_hyprland_git
+        ;;
+    2)
+        install_hyprland
+        ;;
+    *)
+        echo "Invalid choice. Exiting."
+        exit 1
+        ;;
+esac
